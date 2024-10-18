@@ -33,14 +33,20 @@ app.get("/", (req, res) => {
 
 app.post("/api/register", async (req, res) => {
   try {
-    // Create new user
+    // Create new user with all the questions and data from the form
     const newUser = new User({
       name: req.body.name,
       id: req.body.id,
-      conjunction: req.body.conjunction,
-      gramaticallyCorrect: req.body.gramaticallyCorrect,
-      pluralWorld: req.body.pluralWorld,
-      comparativeForm: req.body.comparativeForm,
+      question1: req.body.question1, // Answer to Question 1
+      question2: req.body.question2, // Answer to Question 2
+      question3: req.body.question3, // Answer to Question 3
+      question4: req.body.question4, // Answer to Question 4
+      question5: req.body.question5, // Answer to Question 5
+      question6: req.body.question6, // Answer to Question 6
+      question7: req.body.question7, // Answer to Question 7
+      question8: req.body.question8, // Answer to Question 8
+      question9: req.body.question9, // Answer to Question 9
+      question10: req.body.question10, // Answer to Question 10
     });
 
     // Save user to MongoDB
@@ -52,6 +58,7 @@ app.post("/api/register", async (req, res) => {
     res.status(500).json({ error: "Error storing user data" });
   }
 });
+
 
 // Route to fetch all user data
 app.get("/api/users", async (req, res) => {
