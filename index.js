@@ -32,6 +32,12 @@ app.get("/", (req, res) => {
 });
 
 app.post("/api/register", async (req, res) => {
+  // Check if a user with the same ID already exists
+  const existingUser = await User.findOne({ ID: req.body.id });
+  if (existingUser) {
+    return res.status(400).json({ error: "User with this ID already exists" });
+  }
+
   try {
     // Create new user with all the questions and data from the form
     const newUser = new User({
